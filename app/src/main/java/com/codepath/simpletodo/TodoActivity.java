@@ -59,7 +59,7 @@ public class TodoActivity extends Activity {
                 Intent editIntent = new Intent(TodoActivity.this, EditActivity.class);
                 editIntent.putExtra("text", todoItems.get(position));
                 editIntent.putExtra("position",position);
-                startActivityForResult(editIntent,RESULT_OK);
+                startActivityForResult(editIntent,1);
             }
         });
     }
