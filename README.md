@@ -1,4 +1,4 @@
-This is a test project while playing how to develop android applications.
+This is a test project while developing android applications.
 
 It is a simple application that saves TODO items.
 
