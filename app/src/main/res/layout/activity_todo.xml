@@ -15,15 +15,16 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:onClick="onAddedItem"
-        android:text="Add Item" />
+        android:text="@string/Add" />
 
     <ListView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:id="@+id/lvItems"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/btnAddItem" />
+        android:layout_above="@+id/btnAddItem"
+        />
 
     <EditText
         android:layout_width="wrap_content"
@@ -34,6 +35,6 @@
         android:layout_alignParentStart="true"
         android:layout_toLeftOf="@+id/btnAddItem"
         android:layout_toStartOf="@+id/btnAddItem"
-        android:text="Enter a new Item" />
+        android:hint="Enter a new Item" />
 
 </RelativeLayout>

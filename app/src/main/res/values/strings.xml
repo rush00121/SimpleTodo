@@ -3,4 +3,8 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="Add">Add</string>
+    <string name="title_activity_edit">EditActivity</string>
+    <string name="editItemLabel">Edit Item below</string>
+    <string name="save">Save</string>
 </resources>
