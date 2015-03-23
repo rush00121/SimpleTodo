@@ -1,3 +1,5 @@
+# Simple TODO project
+
 This is a test project while developing android applications.
 
 It is a simple application that saves TODO items.
