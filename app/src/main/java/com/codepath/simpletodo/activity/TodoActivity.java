@@ -1,4 +1,4 @@
-package com.codepath.simpletodo;
+package com.codepath.simpletodo.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,6 +12,8 @@ import android.widget.ListView;
 
 import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
+import com.codepath.simpletodo.R;
+import com.codepath.simpletodo.model.Item;
 
 import java.util.ArrayList;
 import java.util.List;

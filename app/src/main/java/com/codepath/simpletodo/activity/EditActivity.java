@@ -1,4 +1,4 @@
-package com.codepath.simpletodo;
+package com.codepath.simpletodo.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+
+import com.codepath.simpletodo.R;
 
 
 public class EditActivity extends ActionBarActivity {
@@ -21,8 +23,8 @@ public class EditActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
         todoItem = getIntent().getStringExtra("text");
-        position = getIntent().getIntExtra("position",0);
-        remote_id = getIntent().getLongExtra("remote_id",0);
+        position = getIntent().getIntExtra("position", 0);
+        remote_id = getIntent().getLongExtra("remote_id", 0);
         text = (EditText) findViewById(R.id.editText);
         text.getText().append(todoItem);
     }
@@ -38,7 +40,7 @@ public class EditActivity extends ActionBarActivity {
         data.putExtra("editedText",text.getText().toString());
         data.putExtra("position",position);
         data.putExtra("remote_id",remote_id);
-        setResult(RESULT_OK,data);
+        setResult(RESULT_OK, data);
         this.finish();
     }
 

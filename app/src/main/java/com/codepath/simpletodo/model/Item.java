@@ -1,4 +1,4 @@
-package com.codepath.simpletodo;
+package com.codepath.simpletodo.model;
 
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
