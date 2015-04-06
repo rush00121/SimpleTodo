@@ -14,20 +14,29 @@ public class Item extends Model {
     @Column(name = "remote_id", unique = true, onUniqueConflict = Column.ConflictAction.REPLACE)
     public long remoteId;
 
-    @Column(name = "data")
-    public String data;
+    @Column(name = "task")
+    public String task;
+
+    @Column(name = "dueDate")
+    public String date;
 
     public Item() {
         super();
     }
 
-    public Item(String data) {
+    public Item(String task) {
         super();
-        this.data = data;
+        this.task = task;
+    }
+
+    public Item(String task, String date) {
+        super();
+        this.task = task;
+        this.date = date;
     }
 
     @Override
     public String toString() {
-        return data;
+        return task + (date!=null?(":" + date):"");
     }
 }

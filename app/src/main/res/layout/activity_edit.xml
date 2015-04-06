@@ -25,9 +25,22 @@
         android:layout_height="wrap_content"
         android:text="@string/save"
         android:id="@+id/editSave"
+        android:onClick="onEditItem"
+        android:layout_marginTop="55dp"
+        android:layout_below="@+id/editText"
+        android:layout_alignRight="@+id/editLabel"
+        android:layout_alignEnd="@+id/editLabel" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/dateText"
         android:layout_below="@+id/editText"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:onClick="onEditItem"/>
+        android:hint="@string/dueDate"/>
+
 
 </RelativeLayout>

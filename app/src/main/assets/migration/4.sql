@@ -1,0 +1,1 @@
+alter table TodoItems add column dueDate char(15);

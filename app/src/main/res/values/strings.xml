@@ -7,4 +7,5 @@
     <string name="title_activity_edit">EditActivity</string>
     <string name="editItemLabel">Edit Item below</string>
     <string name="save">Save</string>
+    <string name="dueDate">Enter Due Date</string>
 </resources>

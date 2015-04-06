@@ -21,13 +21,13 @@
             android:name=".activity.EditActivity"
             android:label="@string/title_activity_edit"
             android:parentActivityName=".activity.TodoActivity" >
-            <meta-data
+            <meta-task
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.TodoActivity" />
         </activity>
 
-        <meta-data android:name="AA_DB_NAME" android:value="RestClient.db" />
-        <meta-data android:name="AA_DB_VERSION" android:value="1" />
+        <meta-task android:name="AA_DB_NAME" android:value="RestClient.db" />
+        <meta-task android:name="AA_DB_VERSION" android:value="4" />
     </application>
 
 </manifest>
