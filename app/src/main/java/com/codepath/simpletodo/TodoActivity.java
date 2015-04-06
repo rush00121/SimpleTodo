@@ -10,22 +10,22 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import org.apache.commons.io.FileUtils;
+import com.activeandroid.query.Delete;
+import com.activeandroid.query.Select;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by rushabh on 3/22/15.
  */
 public class TodoActivity extends Activity {
 
-    private ArrayList<String> todoItems;
-    private ArrayAdapter<String> todoAdapter;
+    private ArrayList<Item> todoItems;
+    private ArrayAdapter<Item> todoAdapter;
     private ListView lvItems ;
     private EditText newItem ;
-
+    private long maxRemoteId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +45,10 @@ public class TodoActivity extends Activity {
                 new AdapterView.OnItemLongClickListener() {
                     @Override
                     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                        Item item = todoItems.get(position);
                         todoItems.remove(position);
-                        writeData();
+                        new Delete().from(Item.class).where("remote_id = ?", item.remoteId).execute();
+                       // writeData();
                         todoAdapter.notifyDataSetChanged();
                         return true;
                     }
@@ -57,9 +59,10 @@ public class TodoActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent editIntent = new Intent(TodoActivity.this, EditActivity.class);
-                editIntent.putExtra("text", todoItems.get(position));
+                editIntent.putExtra("text", todoItems.get(position).data);
                 editIntent.putExtra("position",position);
-                startActivityForResult(editIntent,1);
+                editIntent.putExtra("remote_id",todoItems.get(position).remoteId);
+                startActivityForResult(editIntent, 1);
             }
         });
     }
@@ -67,40 +70,50 @@ public class TodoActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         String editedString = data.getStringExtra("editedText");
-        int position = data.getIntExtra("position",0);
-        todoItems.set(position,editedString);
-        writeData();
+        int position = data.getIntExtra("position", 0);
+        Item updatedItem = new Item();
+        updatedItem.data = editedString;
+        updatedItem.remoteId = data.getLongExtra("remote_id", 0);
+        todoItems.set(position, updatedItem);
+        updateItemIntoDB(editedString, updatedItem.remoteId);
         todoAdapter.notifyDataSetChanged();
     }
 
     private void populateArrayItems() {
-        readData();
+        readDataFromDb();
     }
 
     public void onAddedItem(View view){
         String itemText =  newItem.getText().toString();
-        todoAdapter.add(itemText);
-        writeData();
+
+        Item newlyCreatedItem = new Item();
+        newlyCreatedItem.data = itemText;
+        newlyCreatedItem.remoteId = ++maxRemoteId;
+        todoAdapter.add(newlyCreatedItem);
+        insertDataIntoDB(newlyCreatedItem);
         newItem.getText().clear();
     }
 
-    private void readData(){
-        File currentDir = getFilesDir();
-        File todoFile = new File(currentDir,"todo.txt");
-        try{
-            todoItems = new ArrayList<>(FileUtils.readLines(todoFile));
-        }catch (IOException e){
-            todoItems = new ArrayList<>();
+    private void readDataFromDb(){
+        List<Item> items = new Select().from(Item.class).execute();
+        for(Item item :items){
+            todoItems.add(item);
+            if(item.remoteId>maxRemoteId){
+                maxRemoteId=item.remoteId;
+            }
         }
     }
 
-    private void writeData(){
-        File currentDir = getFilesDir();
-        File todoFile = new File(currentDir,"todo.txt");
-        try {
-            FileUtils.writeLines(todoFile, todoItems);
-        }catch (IOException e){
-            e.printStackTrace();
+    private void insertDataIntoDB(Item newItem){
+        newItem.save();
+    }
+
+    private void updateItemIntoDB(String data,long position){
+        List<Item> items = new Select().from(Item.class).where("remote_id=?",position).execute();
+        if(items!=null && items.size()>0){
+            Item item = items.get(0);
+            item.data =data;
+            item.save();
         }
     }
 

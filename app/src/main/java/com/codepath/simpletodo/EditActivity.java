@@ -13,6 +13,7 @@ public class EditActivity extends ActionBarActivity {
 
     private String todoItem ;
     private int position;
+    private long remote_id;
     private EditText text;
 
     @Override
@@ -21,6 +22,7 @@ public class EditActivity extends ActionBarActivity {
         setContentView(R.layout.activity_edit);
         todoItem = getIntent().getStringExtra("text");
         position = getIntent().getIntExtra("position",0);
+        remote_id = getIntent().getLongExtra("remote_id",0);
         text = (EditText) findViewById(R.id.editText);
         text.getText().append(todoItem);
     }
@@ -35,6 +37,7 @@ public class EditActivity extends ActionBarActivity {
         Intent data = getIntent();
         data.putExtra("editedText",text.getText().toString());
         data.putExtra("position",position);
+        data.putExtra("remote_id",remote_id);
         setResult(RESULT_OK,data);
         this.finish();
     }
@@ -48,7 +51,7 @@ public class EditActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
+        // Handle action bar data clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
