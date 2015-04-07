@@ -4,7 +4,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="Add">Add</string>
-    <string name="title_activity_edit">EditActivity</string>
+    <string name="title_activity_edit">Edit task</string>
     <string name="editItemLabel">Edit Item below</string>
     <string name="save">Save</string>
     <string name="dueDate">Enter Due Date</string>
