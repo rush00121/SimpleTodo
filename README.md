@@ -13,7 +13,7 @@ Currently the application supports 3 functions.
  **3) Remove an existing item : Long Click on an existing item and it will remove the item<br>**
 
 ##Extra extensions
-**a) The application also persists the items to **sqllite database** and restores them on startup<br>**
+**a) The application also persists the items to sqllite database and restores them on startup<br>**
 **b) I have used a custom adapter for displaying data on the listView.<br>**
 **c) The Item data model now also supports a due date for the task.<br>**
 **d) The due date for the task is shown on the listView using a custom view.<br>**
