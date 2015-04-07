@@ -19,4 +19,4 @@ Currently the application supports 3 functions.
 **d) The due date for the task is shown on the listView using a custom view.<br>**
 **e) The due date can be entered using a DatePickerDialog . The edit dialog also has a DatePickerDialog for editing the date.<br>**
 
-![Video Walkthrough](demo.gif)
+![Video Walkthrough](demo1.gif)
